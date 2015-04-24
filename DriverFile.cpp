@@ -37,10 +37,10 @@ int main(){
         cout << "======Main Menu=====" << endl;
         cout << "1. Build Network" << endl;
         cout << "2. Print Network Path" << endl;
-        cout << "3. Enqueue" << endl;
-        cout << "4. Dequeue" << endl;
-        cout << "5. Print Queue" << endl;
-        cout << "6. Send Entire Message" << endl;
+        cout << "3. Add City" << endl;
+        cout << "4. Delete City" << endl;
+        cout << "5. Store Message" << endl;
+        cout << "6. Check Message" << endl;
         cout << "7. Quit" << endl;
         cin >> choice;
         if (choice == 1){
@@ -66,6 +66,15 @@ int main(){
         }
         else if (choice == 5){   // prints the items that are in the queue
             //CN->printQueue();
+            string cityName;
+            string inMessage;
+            cout << "Enter the name of the city:" << endl;
+            cin >> ws;
+            getline(cin, cityName);
+            cout << "What message would you like to store:" << endl;
+            cin >> ws;
+            getline(cin, inMessage);
+            CN->storeMsg(cityName, inMessage);
         }
         else if (choice == 6){   // sends the entire message
             //CN->sendingEntireMessage();

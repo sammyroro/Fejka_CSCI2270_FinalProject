@@ -139,3 +139,14 @@ void Network::sendingEntireMessage(){
     }
 }
 */
+
+void Network::storeMsg(string city, string message){
+    node *temp = new node();
+    temp = head;
+    while (temp->next != NULL){
+        if (temp->name == city){
+            temp->message = message;
+            break;
+        }
+    }
+}
