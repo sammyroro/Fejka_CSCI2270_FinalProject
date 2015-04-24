@@ -98,6 +98,11 @@ int main(){
             //    }
             //}
             //CN->sendingEntireMessage();
+            string cityName;
+            cout << "What city would you like to check?" << endl;
+            cin >> ws;
+            getline(cin, cityName);
+            CN->checkMsg(cityName);
         }
         else if (choice == 7){    // exits the program
             cout << "Goodbye!" << endl;

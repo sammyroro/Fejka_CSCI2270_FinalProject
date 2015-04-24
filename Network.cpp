@@ -143,10 +143,22 @@ void Network::sendingEntireMessage(){
 void Network::storeMsg(string city, string message){
     node *temp = new node();
     temp = head;
-    while (temp->next != NULL){
+    while (temp != NULL){
         if (temp->name == city){
             temp->message = message;
             break;
         }
+        temp = temp->next;
+    }
+}
+
+void Network::checkMsg(string city){
+    node *temp = new node();
+    temp = head;
+    while (temp != NULL){
+        if (temp->name == city){
+            cout << temp->message << endl;
+        }
+        temp = temp->next;
     }
 }
