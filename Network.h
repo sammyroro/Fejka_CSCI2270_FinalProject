@@ -3,11 +3,12 @@
 #define NETWORK_H
 #include <string>
 
+using namespace std;
 
 struct node{
 
-    std::string name;
-    std::string message; //intended to hold one word
+    string name;
+    string message; //intended to hold one word
     node *next;
     node *previous;
 
@@ -19,18 +20,18 @@ class Network
         Network(int);
         virtual ~Network();
         //circular queue methods
-        //void enqueue(std::string);
-        //std::string dequeue(); //should send through network, call transmit msg
+        //void enqueue(string);
+        //string dequeue(); //should send through network, call transmit msg
         //void printQueue();
         void buildNetwork();
         void printPath();
         //void sendingEntireMessage(); //send when full
-        void addCity(std::string);
-        void deleteCity(std::string);
-        void transmitMsg(std::string);
-        void storeMsg(std::string, std::string);
-        void checkMsg(std::string);
-        void targetedTransmit(std::string, std:string);
+        void addCity(string);
+        void deleteCity(string);
+        void transmitMsg(string);
+        void storeMsg(string, string);
+        void checkMsg(string);
+        void targetedTransmit(string, string);
 
 
     protected:
@@ -42,8 +43,8 @@ class Network
         int queueTail;
         bool full;
         bool sending;
-        std::string *arrayQueue;
-        std::string dequeueWord;
+        string *arrayQueue;
+        string dequeueWord;
 };
 
 #endif // NETWORK_H

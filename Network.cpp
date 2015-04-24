@@ -18,15 +18,16 @@ Network::~Network(){
     delete []arrayQueue;
 }
 void Network::buildNetwork(){
-    std::string cityNames[10] = {"Los Angeles", "Phoenix", "Denver", "Dallas", "St. Louis", "Chicago", "Atlanta",
-                            "Washington, D.C.", "New York", "Boston"};
+    std::string cityNames[15] = {"Los Angeles", "Las Vegas", "Phoenix", "Salt Lake City", "Denver", "Dallas", "Minneapolis",
+                                "St. Louis", "Columbus", "Nashville", "Chicago", "Atlanta", "Washington, D.C.", "New York",
+                                "Boston"};
     node *xCity = new node;
     head = xCity;
     xCity->name = cityNames[0];
     xCity->next = NULL;
     xCity->previous = NULL;
     int i = 1;
-    while (i < 10){    // creates new nodes for each city and attaches it to the linked list
+    while (i < 15){    // creates new nodes for each city and attaches it to the linked list
         node *newCity = new node;
         newCity->name = cityNames[i];
         newCity->next = NULL;
@@ -64,6 +65,7 @@ void Network::printPath(){    //this functions goes through the linked list and 
     }
     delete []tempCity;
 }
+/*
 void Network::printQueue(){  //prints the words that are stored in the queue
     if (queueTail <= queueHead){
         for(int i = queueHead; i < 10; i++){
@@ -79,6 +81,7 @@ void Network::printQueue(){  //prints the words that are stored in the queue
         }
     }
 }
+*/
 void Network::transmitMsg(std::string word){  // transmits the message through the network
     node *temp = new node;
     temp = head;

@@ -1,5 +1,6 @@
-#Samuel Taylor
-#CSCI 2270
+//Samuel Taylor
+//Martin Fejka
+//CSCI 2270
 
 #include <iostream>
 #include <fstream>
@@ -49,45 +50,45 @@ int main(){
             CN->printPath();     //prints the path of the network
         }
         else if (choice == 3){      //adds a word to the queue
-            CN->enqueue(wordArray2[readWords]);
-            readWords++;
-            now++;
+            //CN->enqueue(wordArray2[readWords]);
+            //readWords++;
+            //now++;
         }
         else if (choice == 4){    // removes a word from the queue and sends it to all the cities
-            if (now > 0){
-                word = CN->dequeue();
-                CN->transmitMsg(word);
-                now--;
-            }
-            else {
-                cout << "Queue is empty." << endl;
-            }
+            //if (now > 0){
+            //    word = CN->dequeue();
+            //    CN->transmitMsg(word);
+            //    now--;
+            //}
+            //else {
+            //    cout << "Queue is empty." << endl;
+            //}
         }
         else if (choice == 5){   // prints the items that are in the queue
-            CN->printQueue();
+            //CN->printQueue();
         }
         else if (choice == 6){   // sends the entire message
-            CN->sendingEntireMessage();
-            int s = 0;
-            bool stop = false;
-            while (stop == false){
-                for (int i = now; i < 10; i++){
-                    if (s < notw){
-                        CN->enqueue(wordArray2[s]);
-                        s++;
-                        now++;
-                    }
-                }
-                for (int i = 0; i < now; i++){
-                    word = CN->dequeue();
-                    CN->transmitMsg(word);
-                }
-                now = 0;
-                if (s == notw){
-                    stop = true;
-                }
-            }
-            CN->sendingEntireMessage();
+            //CN->sendingEntireMessage();
+            //int s = 0;
+            //bool stop = false;
+            //while (stop == false){
+            //    for (int i = now; i < 10; i++){
+            //        if (s < notw){
+            //            CN->enqueue(wordArray2[s]);
+            //            s++;
+            //            now++;
+            //        }
+            //    }
+            //    for (int i = 0; i < now; i++){
+            //        word = CN->dequeue();
+            //        CN->transmitMsg(word);
+            //    }
+            //    now = 0;
+            //    if (s == notw){
+            //        stop = true;
+            //    }
+            //}
+            //CN->sendingEntireMessage();
         }
         else if (choice == 7){    // exits the program
             cout << "Goodbye!" << endl;
