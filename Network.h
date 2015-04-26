@@ -8,7 +8,7 @@ using namespace std;
 struct node{
 
     string name;
-    string message; //intended to hold one word
+    string message;
     node *next;
     node *previous;
 
@@ -17,7 +17,7 @@ struct node{
 class Network
 {
     public:
-        Network(int);
+        Network();
         virtual ~Network();
         void buildNetwork();
         void printPath();
@@ -33,6 +33,7 @@ class Network
     private:
         node *head;
         node *tail;
+        bool networkBuilt;
 };
 
 #endif // NETWORK_H

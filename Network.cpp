@@ -3,10 +3,11 @@
 
 using namespace std;
 
-Network::Network(int qs){  //sets up all of the initial conditions that are needed
+Network::Network(){  //sets up all of the initial conditions that are needed
     //ctor
     head = NULL;
     tail = NULL;
+    networkBuilt = false;
 }
 
 Network::~Network(){
@@ -32,33 +33,28 @@ void Network::buildNetwork(){
         tail = xCity;
         i++;
     }
-
-    xCity = head;
-    cout << "===CURRENT PATH===" << endl;   // prints out the path after it has been created
-    while (xCity != NULL){
-        cout << xCity->name << " -> ";
-        if (xCity->next == NULL){
-            cout << "NULL" << endl;
-            cout << "==================" << endl;
-        }
-        xCity = xCity->next;
-    }
-    delete []xCity;
+    networkBuilt = true;
+    printPath();
 }
 
 void Network::printPath(){    //this functions goes through the linked list and prints the path
-    cout << "===CURRENT PATH===" << endl;
-    node *tempCity = new node;
-    tempCity = head;
-    while (tempCity != NULL){
-        cout << tempCity->name << " -> ";
-        if (tempCity->next == NULL){
-            cout << "NULL" << endl;
-            cout << "==================" << endl;
-        }
-        tempCity = tempCity->next;
+    if (networkBuilt == false){
+        cout << "No network in place!" << endl;
     }
-    delete []tempCity;
+    else {
+        cout << "===CURRENT PATH===" << endl;
+        node *tempCity = new node;
+        tempCity = head;
+        while (tempCity != NULL){
+            cout << tempCity->name << " -> ";
+            if (tempCity->next == NULL){
+                cout << "NULL" << endl;
+                cout << "==================" << endl;
+            }
+            tempCity = tempCity->next;
+        }
+        delete []tempCity;
+    }
 }
 
 void Network::transmitMsg(string word){  // transmits the message through the network
