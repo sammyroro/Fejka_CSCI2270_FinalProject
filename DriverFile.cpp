@@ -1,6 +1,10 @@
-//Samuel Taylor
-//Martin Fejka
-//CSCI 2270
+//
+//  main.cpp
+//  FinalProject2270
+//
+//  Created by Martin M. Fejka on 4/25/15.
+//  Copyright (c) 2015 Martin M. Fejka. All rights reserved.
+//
 
 #include <iostream>
 #include <fstream>
@@ -13,8 +17,8 @@ using namespace std;
 int main(){
     bool running = true;
     int choice;
-    Network *CN = new Network();
-    while (running != false){                     // keeps the user in the loop until the choose quit
+    Network *CN = new Network(10);
+    while (running != false){                     // keeps the user in the loop until they choose quit
         cout << "======Main Menu=====" << endl;
         cout << "1. Build Network" << endl;
         cout << "2. Print Network Path" << endl;
@@ -22,23 +26,29 @@ int main(){
         cout << "4. Delete City" << endl;
         cout << "5. Store Message" << endl;
         cout << "6. Check Message" << endl;
-        cout << "7. Transmit Message" << endl;
-        cout << "8. Targeted Transmit" << endl;
-        cout << "9. Quit" << endl;
+        cout << "7. Quit" << endl;
         cin >> choice;
+        string cityName;
         if (choice == 1){
-            CN->buildNetwork();  // builds the initial network of 15 cities
+            CN->buildNetwork();  // builds the network
         }
         else if (choice == 2){
             CN->printPath();     //prints the path of the network
         }
-        else if (choice == 3){
-
+        else if (choice == 3){      //adds a city in the network path
+            string prevCity;
+            cout<< "Enter the name of the city you would like to add: "<<endl; //name of city to add
+            cin >> ws;
+            getline(cin, cityName);
+            cout<< "Enter the name this city should be added after: " <<endl; //name of city to add to
+            cin >> ws;
+            getline(cin, prevCity);
+            CN->addCity(cityName, prevCity);
         }
-        else if (choice == 4){
-
+        else if (choice == 4){    // removes a word from the queue and sends it to all the cities
+            
         }
-        else if (choice == 5){   // stores message to a specified city
+        else if (choice == 5){   // prints the items that are in the queue
             string cityName;
             string inMessage;
             cout << "Enter the name of the city:" << endl;
@@ -49,30 +59,22 @@ int main(){
             getline(cin, inMessage);
             CN->storeMsg(cityName, inMessage);
         }
-        else if (choice == 6){   // checks the message that a city is holding
+        else if (choice == 6){   // sends the entire message
             string cityName;
             cout << "What city would you like to check?" << endl;
             cin >> ws;
             getline(cin, cityName);
             CN->checkMsg(cityName);
         }
-        else if (choice == 6){
-
-        }
-        else if (choice == 7){
-
-        }
-        else if (choice == 8){
-
-        }
-        else if (choice == 9){    // exits the program
+        else if (choice == 7){    // exits the program
             cout << "Goodbye!" << endl;
             running = false;
         }
         else {
             cout << "Invalid input" << endl;
         }
+        
     }
-
+    
     return 0;
 }
