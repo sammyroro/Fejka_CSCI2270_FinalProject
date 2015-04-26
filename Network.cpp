@@ -7,24 +7,25 @@
 //
 
 #include "Network.h"
-#include "Network.h"
 #include <iostream>
 
 using namespace std;
 
-Network::Network(int qs){  //sets up all of the initial conditions that are needed
+Network::Network(){  //sets up all of the initial conditions that are needed
     //ctor
     head = NULL;
     tail = NULL;
+    networkBuilt = false;
 }
 
 Network::~Network(){
     //dtor
 }
+
 void Network::buildNetwork(){
     string cityNames[15] = {"Los Angeles", "Las Vegas", "Phoenix", "Salt Lake City", "Denver", "Dallas", "Minneapolis",
-        "St. Louis", "Columbus", "Nashville", "Chicago", "Atlanta", "Washington, D.C.", "New York",
-        "Boston"};
+                                "St. Louis", "Columbus", "Nashville", "Chicago", "Atlanta", "Washington, D.C.", "New York",
+                                "Boston"};
     node *xCity = new node;
     head = xCity;
     xCity->name = cityNames[0];
@@ -41,47 +42,41 @@ void Network::buildNetwork(){
         tail = xCity;
         i++;
     }
-    
-    xCity = head;
-    cout << "===CURRENT PATH===" << endl;   // prints out the path after it has been created
-    while (xCity != NULL){
-        cout << xCity->name << " -> ";
-        if (xCity->next == NULL){
-            cout << "NULL" << endl;
-            cout << "==================" << endl;
-        }
-        xCity = xCity->next;
-    }
-    delete []xCity;
+    networkBuilt = true;
+    printPath();
 }
 
 void Network::printPath(){    //this functions goes through the linked list and prints the path
-    cout << "===CURRENT PATH===" << endl;
-    node *tempCity = new node;
-    tempCity = head;
-    while (tempCity != NULL){
-        cout << tempCity->name << " -> ";
-        if (tempCity->next == NULL){
-            cout << "NULL" << endl;
-            cout << "==================" << endl;
-        }
-        tempCity = tempCity->next;
+    if (networkBuilt == false){
+        cout << "No network in place!" << endl;
     }
-    delete []tempCity;
+    else {
+        cout << "===CURRENT PATH===" << endl;
+        node *tempCity = new node;
+        tempCity = head;
+        while (tempCity != NULL){
+            cout << tempCity->name << " -> ";
+            if (tempCity->next == NULL){
+                cout << "NULL" << endl;
+                cout << "==================" << endl;
+            }
+            tempCity = tempCity->next;
+        }
+        delete []tempCity;
+    }
 }
 
-void Network::transmitMsg(string word){  // transmits the message through the network
+void Network::transmitMsg(string message){  // transmits the message through the network
     node *temp = new node;
     temp = head;
     while (temp->next != NULL){
-        cout << temp->name << " received " << word << endl;
+        cout << temp->name << " received " << message << endl;
         temp = temp->next;
     }
-    while (temp->previous != NULL){
-        cout << temp->name << " received " << word << endl;
+    while (temp != NULL){
+        cout << temp->name << " received " << message << endl;
         temp = temp->previous;
     }
-    cout << temp->name << " received " << word << endl;
 }
 
 void Network::storeMsg(string city, string message){
@@ -112,7 +107,7 @@ void Network::addCity(string city, string predecessor){
     //node *newNode = new node;
     //node *temp = new node;
     node *var = new node;
-    
+
     temp = head;
     var->name=city;
     if(head==NULL)
@@ -128,12 +123,12 @@ void Network::addCity(string city, string predecessor){
         {
             temp=temp->next;
         }
-        
+
         if(temp==NULL)
         {
             cout<< predecessor << ("\n is not present in list ") <<endl;
         }
-         
+
         else{
             temp1=temp->next;
             temp->next=var;
@@ -152,7 +147,7 @@ void Network::addCity(string city, string predecessor){
 }
     /*
     while(temp != NULL){
-     
+
         if(temp->name == predecessor){
             newNode->name = city;
             newNode->name = temp->name;
@@ -160,7 +155,7 @@ void Network::addCity(string city, string predecessor){
             (newNode->previous)->next = temp;
             temp->previous = newNode->previous;
             newNode->previous = newNode;
-            
+
         }
         temp = temp->next;
     }
@@ -168,5 +163,35 @@ void Network::addCity(string city, string predecessor){
 
 
 void Network::deleteCity(string city){
-    
+
+}
+
+void Network::targetedTransmit(string cityName, string message){
+    node *temp = new node();
+    temp = head;
+    while (temp != NULL){
+        cout << temp->name << " received " << message << endl;
+        if (temp->name == cityName){
+            break;
+        }
+        temp = temp->next;
+    }
+    temp = temp->previous;
+    while (temp != NULL){
+        cout << temp->name << " received " << message << endl;
+        temp = temp->previous;
+    }
+}
+
+void Network::transmitAndStore(string cityName, string message){
+    node *temp = new node();
+    temp = head;
+    while (temp != NULL){
+        cout << temp->name << " received " << message << endl;
+        if (temp->name == cityName){
+            break;
+        }
+        temp = temp->next;
+    }
+    temp->message = message;
 }
