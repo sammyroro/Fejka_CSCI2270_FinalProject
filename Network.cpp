@@ -20,6 +20,14 @@ Network::Network(int qs){  //sets up all of the initial conditions that are need
 
 Network::~Network(){
     //dtor
+    node *pDel = head;
+    
+    while (pDel != NULL) {
+        head = head->next;
+        delete pDel;
+        pDel = head;
+    }
+    tail = head = NULL;
 }
 void Network::buildNetwork(){
     string cityNames[15] = {"Los Angeles", "Las Vegas", "Phoenix", "Salt Lake City", "Denver", "Dallas", "Minneapolis",
@@ -108,64 +116,34 @@ void Network::checkMsg(string city){
 }
 
 void Network::addCity(string city, string predecessor){
-    node *head, *temp, *temp1;
-    //node *newNode = new node;
-    //node *temp = new node;
-    node *var = new node;
-    
+    node *temp = new node();
+    node *newCity = new node();
     temp = head;
-    var->name=city;
-    if(head==NULL)
-    {
-        head=var;
-        head->previous=NULL;
-        head->next=NULL;
+    if(head == NULL){
+        newCity->name = city;
+        newCity->previous=NULL;
+        newCity->next=NULL;
+        head = newCity;
     }
-    else
-    {
-        temp = head;
-        while(temp!=NULL && temp->name!=predecessor)
-        {
+    else{
+        while(temp != NULL && temp->name != predecessor){
             temp=temp->next;
         }
-        
-        if(temp==NULL)
-        {
-            cout<< predecessor << ("\n is not present in list ") <<endl;
+        if(temp == NULL){
+            cout << predecessor << (" is not present in the network") <<endl;
         }
-         
         else{
-            temp1=temp->next;
-            temp->next=var;
-            var->previous=temp;
-            var->next=temp1;
-            temp1->previous=var;
+            newCity->name = city;
+            newCity->next = temp->next;
+            if (temp->next != NULL){
+                temp->next->previous = newCity;
+                tail = newCity;
+            }
+            temp->next = newCity;
+            newCity->previous = temp;
         }
     }
-    /*
-    tail=head;
-    while(tail->next!=NULL)
-    {
-        tail=tail->next;
-    }
-     */
 }
-    /*
-    while(temp != NULL){
-     
-        if(temp->name == predecessor){
-            newNode->name = city;
-            newNode->name = temp->name;
-            temp->next = newNode;
-            (newNode->previous)->next = temp;
-            temp->previous = newNode->previous;
-            newNode->previous = newNode;
-            
-        }
-        temp = temp->next;
-    }
-     */
-
 
 void Network::deleteCity(string city){
     

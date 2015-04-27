@@ -67,7 +67,8 @@ int main(){
             CN->checkMsg(cityName);
         }
         else if (choice == 7){    // exits the program
-            cout << "Goodbye!" << endl;
+            cout << "Network path has been deleted, goodbye!" << endl;
+            CN->~Network();
             running = false;
         }
         else {
