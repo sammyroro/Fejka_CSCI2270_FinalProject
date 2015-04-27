@@ -69,14 +69,6 @@ int main(){
             getline(cin, cityName);
             CN->checkMsg(cityName);
         }
-<<<<<<< HEAD
-        else if (choice == 7){    // exits the program
-            cout << "Network path has been deleted, goodbye!" << endl;
-            CN->~Network();
-=======
-        else if (choice == 6){
-
-        }
         else if (choice == 7){
             string inMessage;
             cout << "What message would you like to send through the network?" << endl;
@@ -107,8 +99,8 @@ int main(){
             CN->transmitAndStore(destinationCity, inMessage);
         }
         else if (choice == 10){    // exits the program
-            cout << "Goodbye!" << endl;
->>>>>>> origin/master
+            cout << "Network path has been deleted, goodbye!" << endl;
+            CN->~Network();
             running = false;
         }
         else {

@@ -109,18 +109,9 @@ void Network::checkMsg(string city){
         temp = temp->next;
     }
 }
-
 void Network::addCity(string city, string predecessor){
-<<<<<<< HEAD
     node *temp = new node();
     node *newCity = new node();
-=======
-    node *head, *temp, *temp1;
-    //node *newNode = new node;
-    //node *temp = new node;
-    node *var = new node;
-
->>>>>>> origin/master
     temp = head;
     if(head == NULL){
         newCity->name = city;
@@ -132,18 +123,9 @@ void Network::addCity(string city, string predecessor){
         while(temp != NULL && temp->name != predecessor){
             temp=temp->next;
         }
-<<<<<<< HEAD
         if(temp == NULL){
             cout << predecessor << (" is not present in the network") <<endl;
         }
-=======
-
-        if(temp==NULL)
-        {
-            cout<< predecessor << ("\n is not present in list ") <<endl;
-        }
-
->>>>>>> origin/master
         else{
             newCity->name = city;
             newCity->next = temp->next;
@@ -156,25 +138,6 @@ void Network::addCity(string city, string predecessor){
         }
     }
 }
-<<<<<<< HEAD
-=======
-    /*
-    while(temp != NULL){
-
-        if(temp->name == predecessor){
-            newNode->name = city;
-            newNode->name = temp->name;
-            temp->next = newNode;
-            (newNode->previous)->next = temp;
-            temp->previous = newNode->previous;
-            newNode->previous = newNode;
-
-        }
-        temp = temp->next;
-    }
-     */
-
->>>>>>> origin/master
 
 void Network::deleteCity(string city){
 
