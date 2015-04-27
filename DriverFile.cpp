@@ -49,7 +49,11 @@ int main(){
             CN->addCity(cityName, prevCity);
         }
         else if (choice == 4){
-
+            string cityName;
+            cout<< "Enter the name of the city you wish to delete: " <<endl; //city you want to delete
+            cin << ws;
+            getline(cin, cityName);
+            CN->deleteCity(cityName);
         }
         else if (choice == 5){   // stores message to a specified city
             string cityName;

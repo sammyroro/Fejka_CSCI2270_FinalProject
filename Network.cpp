@@ -140,9 +140,31 @@ void Network::addCity(string city, string predecessor){
 }
 
 void Network::deleteCity(string city){
-
+struct node *temp,*var, *temp1;
+    temp = head;
+    while(temp!=NULL)
+    {
+        if(temp->name == city){
+            if(temp->previous==NULL){
+                free(temp);
+                head = NULL;
+                tail = NULL;
+                return;
+            }
+            else{
+                var->next=temp1;
+                temp1->previous=var;
+                free(temp);
+                return;
+            }
+        }
+        else{
+                var = temp;
+                temp = temp->next;
+                temp1 = temp->next;
+        }
+    }
 }
-
 void Network::targetedTransmit(string cityName, string message){
     node *temp = new node();
     temp = head;
