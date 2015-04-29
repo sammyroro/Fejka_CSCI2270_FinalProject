@@ -8,6 +8,7 @@
 
 #include "Network.h"
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ Network::Network(){  //sets up all of the initial conditions that are needed
 Network::~Network(){
     //dtor
     node *pDel = head;
-    
+
     while (pDel != NULL) {
         head = head->next;
         delete pDel;
@@ -138,18 +139,58 @@ void Network::addCity(string city, string predecessor){
         }
     }
 }
-
-void Network::deleteCity(string city){
-struct node *temp,*var, *temp1;
+void Network::addCityHead(string city){
+    node *temp = new node();
+    node *newCity = new node();
     temp = head;
+    if(head == NULL){
+        newCity->name = city;
+        newCity->previous=NULL;
+        newCity->next=NULL;
+        head = newCity;
+        return;
+    }
+    else{
+
+            newCity->name = city;
+            newCity->next = temp;
+            newCity->previous = NULL;
+            head = newCity;
+            temp->previous = newCity;
+
+
+
+    }
+}
+void Network::deleteCity(string city){
+    struct node *temp,*var, *temp1;
+    temp = head;
+    var = temp->previous;
+    temp1 = temp->next;
     while(temp!=NULL)
     {
         if(temp->name == city){
-            if(temp->previous==NULL){
+            if(temp->previous==NULL && temp->next == NULL){
                 free(temp);
                 head = NULL;
                 tail = NULL;
                 return;
+            }
+            else if(temp->previous==NULL && temp->next != NULL)
+            {
+                head = temp->next;
+                temp->next->previous = NULL;
+                free(temp);
+                return;
+            }
+            else if(temp->previous!=NULL && temp->next == NULL)
+            {
+                tail = temp->previous;
+                temp->previous->next = NULL;
+                free(temp);
+                return;
+
+
             }
             else{
                 var->next=temp1;
@@ -161,7 +202,16 @@ struct node *temp,*var, *temp1;
         else{
                 var = temp;
                 temp = temp->next;
-                temp1 = temp->next;
+                if(temp != NULL)
+                {
+                    temp1 = temp->next;
+                }
+                else
+                {
+                    temp1 = NULL;
+
+
+                }
         }
     }
 }

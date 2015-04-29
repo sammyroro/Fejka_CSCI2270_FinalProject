@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  FinalProject2270
-//
-//  Created by Martin M. Fejka on 4/25/15.
-//  Copyright (c) 2015 Martin M. Fejka. All rights reserved.
-//
-
 #include <iostream>
 #include <fstream>
 #include "Network.h"
@@ -38,20 +30,52 @@ int main(){
             CN->printPath();     //prints the path of the network
         }
         else if (choice == 3){       //adds a city in the network path
-            string cityName;
-            string prevCity;
-            cout<< "Enter the name of the city you would like to add: "<<endl; //name of city to add
-            cin >> ws;
-            getline(cin, cityName);
-            cout<< "Enter the name this city should be added after: " <<endl; //name of city to add to
-            cin >> ws;
-            getline(cin, prevCity);
-            CN->addCity(cityName, prevCity);
+
+
+            bool go = true;
+            while(go == true)
+            {
+
+                string cityName;
+                string prevCity;
+
+                cout<< "Will this city be the new head? (Y/N) "<<endl; //name of city to add
+                cin >> ws;
+                getline(cin, cityName);
+                if(cityName == "Y")
+                {
+                    cout<< "Enter the name of the city you would like to add: "<<endl; //name of city to add
+                    cin >> ws;
+                    getline(cin, cityName);
+                    CN->addCityHead(cityName);
+                    go = false;
+                }
+                else if(cityName == "N")
+                {
+                    cout<< "Enter the name of the city you would like to add: "<<endl; //name of city to add
+                    cin >> ws;
+                    getline(cin, cityName);
+                    cout<< "Enter the name this city should be added after: " <<endl; //name of city to add to
+                    cin >> ws;
+                    getline(cin, prevCity);
+                    CN->addCity(cityName, prevCity);
+                    go = false;
+                }
+                else
+                {
+                    cout<< "I didn't understand that command, try again."<<endl;
+
+                }
+
+
+            }
+
+
         }
         else if (choice == 4){
             string cityName;
             cout<< "Enter the name of the city you wish to delete: " <<endl; //city you want to delete
-            cin << ws;
+            cin >> ws;
             getline(cin, cityName);
             CN->deleteCity(cityName);
         }

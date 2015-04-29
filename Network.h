@@ -36,6 +36,7 @@ class Network
         void checkMsg(string);
         void targetedTransmit(string, string);
         void transmitAndStore(string, string);
+        void addCityHead(string);
 
     protected:
     private:
